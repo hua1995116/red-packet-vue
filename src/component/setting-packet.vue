@@ -13,7 +13,7 @@
       </div>
       <div class="setting-packet__packet-li">
         <div class="setting-packet__packet-li__label">红包个数</div>
-        <input class="setting-packet__packet-li__text" type="text" placeholder="0.00" maxlength="6">
+        <input class="setting-packet__packet-li__text" type="text" placeholder="填写个数" maxlength="6">
         <div class="setting-packet__packet-li__unit">个</div>
       </div>
       <div class="setting-packet__packet-li">
@@ -61,7 +61,7 @@ export default {
     }
     &__text {
       font-size: 16px;
-      width: 60px;
+      width: 80px;
       flex-basis: 60px;
     }
     &__unit {
@@ -82,7 +82,16 @@ export default {
       font-weight: 900;
     }
   }
-
+  .settin-packet__submit {
+    width: 270px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    background: #e9c1b7;
+    color: #fff;
+    border-radius: 5px;
+    margin: 40px auto 0;
+  }
 }
 </style>
 

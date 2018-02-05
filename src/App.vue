@@ -1,13 +1,15 @@
 <template>
   <div class="main">
     <RedPacket />
-    <settingPacket />
+    <willPacket />
+    <!-- <settingPacket /> -->
   </div>
 </template>
 
 <script>
   import RedPacket from './component/red-packet.vue';
   import settingPacket from './component/setting-packet.vue';
+  import willPacket from './component/will-packet.vue';
   export default {
     name: 'app',
     data() {
@@ -17,7 +19,8 @@
     },
     components: {
       RedPacket,
-      settingPacket
+      settingPacket,
+      willPacket
     }
   }
 
