@@ -1,5 +1,5 @@
 <template>
-  <div class="will-packet">
+  <div class="will-packet" v-show="state === 1">
     <div class="will-packet__bg"></div>
     <div class="will-packet__content">
       <div class="will-packet-top">
@@ -12,17 +12,76 @@
       </div>
       <div class="will-packet__animation">
         <div class="will-packet__an__top">
-          <div class="will-packet__an__inner"></div>
+          <div class="will-packet__an__inner" :class="{arcanimateTop: openAn}"></div>
         </div>
-        <div class="will-packet__an__bottom"></div>
+        <div class="will-packet__an__bottom" :class="{arcanimateBottom: openAn}"></div>
       </div>
-      <div class="will-packet__open">開</div>
+      <div class="will-packet__open" :class="{rotateAn: rotateAn}" @click="openPacket">開</div>
     </div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-
+  data() {
+    return {
+      openAn: false,
+      rotateAn: false,
+    }
+  },
+  methods: {
+    openPacket () {
+      this.rotateAn = true;
+      this.handleopen();
+      setTimeout(() => {
+        this.openAn = true;
+      }, 1500)
+      setTimeout(() => {
+        this.$store.commit('setState', 2);
+      }, 2000)
+    },
+    handleopen() {
+      debugger;
+      let count = this.count;
+      let thisMoney = this.money;
+      if(count === 0) {
+        return;
+      }
+      if(count === 1) {
+        count--;
+        const createRed = Math.round((thisMoney) * 100) / 100;
+        this.moneyArr.push(createRed);
+        this.count = count;
+        this.money = 0;
+        this.$store.commit('setOpenCase', {
+          count: this.count,
+          money: this.money,
+          moneyArr: this.moneyArr
+        })
+        return;
+      }
+      const max = thisMoney / count * 2;
+      let money = Math.random() * max;
+      money = money < this.min ? this.min : money;
+      count--;
+      const createRed = Math.round((money) * 100) / 100;
+      this.moneyArr.push(createRed);
+      this.count = count;
+      this.money = thisMoney - money;
+      this.$store.commit('setOpenCase', {
+        count: this.count,
+        money: this.money,
+        moneyArr: this.moneyArr
+      })
+    }
+  },
+  computed: mapState({
+    state: state => state.state,
+    count: state => state.count,
+    money: state => state.money,
+    min: state => state.min,
+    moneyArr: state => state.moneyArr,
+  })
 }
 </script>
 <style lang="scss">
@@ -93,8 +152,12 @@ export default {
         border-bottom-right-radius:0;
         background: #cd523d;
         // animation: arcanimateTop 0.3s;
-        animation-fill-mode: forwards;
-        animation-delay: 0.2s;
+
+        &.arcanimateTop {
+          animation: arcanimateTop 0.3s;
+          animation-fill-mode: forwards;
+          animation-delay: 0.2s;
+        }
       }
     }
     .will-packet__an__bottom {
@@ -108,8 +171,10 @@ export default {
       box-shadow: 0 1px 2px 0px #a13625;
       transform-origin: bottom;
       // animation: arcanimateBottom 0.3s;
-      animation-fill-mode: forwards;
-
+      &.arcanimateBottom {
+        animation: arcanimateBottom 0.3s;
+        animation-fill-mode: forwards;
+      }
     }
   }
   .will-packet__open {
@@ -128,9 +193,12 @@ export default {
     border: 1px solid #c3abab;
     box-shadow: 0 0 0px 5px #ddbc84;
     color: #413f3d;
-    animation: rorateAn 2s;
-    animation-timing-function:cubic-bezier(.1,.86,.59,1.01);
+    // animation: rotateAn 2s;
     transform-origin: center center;
+    &.rotateAn {
+      animation: rotateAn 2s;
+      animation-timing-function:cubic-bezier(.1,.86,.59,1.01);
+    }
   }
   .will-packet__content {
     position: absolute;
@@ -141,7 +209,7 @@ export default {
   }
 }
 
-@keyframes rorateAn {
+@keyframes rotateAn {
   0% {
     transform: rotateY(0deg);
   }

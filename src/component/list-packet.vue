@@ -1,5 +1,5 @@
 <template>
-  <div class="list-packet">
+  <div class="list-packet" v-show="state === 2">
     <div class="list-packet__content">
       <div class="setting-packet__title">
         <span>取消</span>
@@ -31,8 +31,11 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-
+  computed: mapState({
+    state: state => state.state
+  })
 }
 </script>
 <style lang="scss">

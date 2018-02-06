@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <!-- <RedPacket /> -->
-    <!-- <willPacket /> -->
-    <!-- <settingPacket /> -->
+    <willPacket />
+    <settingPacket />
     <listPacket />
   </div>
 </template>
