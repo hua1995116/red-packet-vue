@@ -1,8 +1,9 @@
 <template>
   <div class="main">
-    <RedPacket />
-    <willPacket />
+    <!-- <RedPacket /> -->
+    <!-- <willPacket /> -->
     <!-- <settingPacket /> -->
+    <listPacket />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
   import RedPacket from './component/red-packet.vue';
   import settingPacket from './component/setting-packet.vue';
   import willPacket from './component/will-packet.vue';
+  import listPacket from './component/list-packet.vue';
   export default {
     name: 'app',
     data() {
@@ -20,7 +22,8 @@
     components: {
       RedPacket,
       settingPacket,
-      willPacket
+      willPacket,
+      listPacket
     }
   }
 
@@ -33,6 +36,10 @@
     padding: 0;
     width: 375px;
     height: 100%;
+  }
+
+  p {
+    margin: 0;
   }
 
   input,textarea {

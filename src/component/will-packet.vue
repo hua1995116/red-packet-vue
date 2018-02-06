@@ -1,8 +1,8 @@
 <template>
-  <div class="will-packet"> 
+  <div class="will-packet">
     <div class="will-packet__bg"></div>
     <div class="will-packet__content">
-      <div class="will-packet-top"> 
+      <div class="will-packet-top">
         <div class="will-packet__head">
           <img src="http://www.qiufengh.com/static/img/hua1995116.jpg" alt="">
         </div>
@@ -10,14 +10,19 @@
         <div class="will-packet__p">给你发了一个红包</div>
         <div class="will-packet__title">恭喜发财，大吉大利</div>
       </div>
-      <div class="will-packet__animation"></div>
+      <div class="will-packet__animation">
+        <div class="will-packet__an__top">
+          <div class="will-packet__an__inner"></div>
+        </div>
+        <div class="will-packet__an__bottom"></div>
+      </div>
       <div class="will-packet__open">開</div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  
+
 }
 </script>
 <style lang="scss">
@@ -57,11 +62,11 @@ export default {
     }
     .will-packet__name {
       font-size: 20px;
-      text-align: center;            
+      text-align: center;
     }
     .will-packet__p {
       font-size: 14px;
-      text-align: center;            
+      text-align: center;
     }
     .will-packet__title {
       font-size: 25px;
@@ -71,13 +76,41 @@ export default {
   }
   .will-packet__animation {
     width: 310px;
-    height: 50px;
-    border-top-left-radius:0;
-    border-top-right-radius:0;
-    border-bottom-left-radius:150px 50px;
-    border-bottom-right-radius:0150px 50px;
-    background: #d85940;
-    animation: arcanimate 1s;
+    height: 100px;
+    position: absolute;
+    top: 180px;
+    .will-packet__an__top {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: flex-end;
+      .will-packet__an__inner {
+        width: 100%;
+        height: 0px;
+        border-top-left-radius:150px 50px;
+        border-top-right-radius:150px 50px;
+        border-bottom-left-radius:0;
+        border-bottom-right-radius:0;
+        background: #cd523d;
+        // animation: arcanimateTop 0.3s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.2s;
+      }
+    }
+    .will-packet__an__bottom {
+      width: 100%;
+      height: 50px;
+      border-top-left-radius:0;
+      border-top-right-radius:0;
+      border-bottom-left-radius:150px 50px;
+      border-bottom-right-radius:150px 50px;
+      background: #d85940;
+      box-shadow: 0 1px 2px 0px #a13625;
+      transform-origin: bottom;
+      // animation: arcanimateBottom 0.3s;
+      animation-fill-mode: forwards;
+
+    }
   }
   .will-packet__open {
     position: absolute;
@@ -95,6 +128,9 @@ export default {
     border: 1px solid #c3abab;
     box-shadow: 0 0 0px 5px #ddbc84;
     color: #413f3d;
+    animation: rorateAn 2s;
+    animation-timing-function:cubic-bezier(.1,.86,.59,1.01);
+    transform-origin: center center;
   }
   .will-packet__content {
     position: absolute;
@@ -104,23 +140,36 @@ export default {
     background: #cd523d;
   }
 }
-@keyframes arcanimate {
+
+@keyframes rorateAn {
   0% {
-    height: 50px;
-    border-radius: 0 0 100% 100%;
+    transform: rotateY(0deg);
   }
-  50% {
+  100% {
+    transform: rotateY(720deg);
+  }
+}
+
+@keyframes arcanimateTop {
+  0% {
     height: 0;
     border-radius: 0;
-    background: #cd523d;
   }
   100% {
     height: 50px;
-    background: #cd523d;
     border-top-left-radius:150px 50px;
     border-top-right-radius:150px 50px;
     border-bottom-left-radius:0;
     border-bottom-right-radius:0;
+  }
+}
+@keyframes arcanimateBottom {
+  0% {
+    height: 50px;
+  }
+  100% {
+    height: 0;
+    border-radius: 0;
   }
 }
 </style>
