@@ -22,7 +22,8 @@ const store = new Vuex.Store({
       state.state = step;
     },
     setOpenCase (state, openObj) {
-
+      state.count = openObj.count;
+      state.money = openObj.money;
     }
   },
   actions: {

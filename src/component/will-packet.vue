@@ -51,11 +51,11 @@ export default {
         count--;
         const createRed = Math.round((thisMoney) * 100) / 100;
         this.moneyArr.push(createRed);
-        this.count = count;
-        this.money = 0;
+        // this.count = count;
+        // this.money = 0;
         this.$store.commit('setOpenCase', {
-          count: this.count,
-          money: this.money,
+          count: count,
+          money: 0,
           moneyArr: this.moneyArr
         })
         return;
@@ -66,11 +66,11 @@ export default {
       count--;
       const createRed = Math.round((money) * 100) / 100;
       this.moneyArr.push(createRed);
-      this.count = count;
-      this.money = thisMoney - money;
+      // this.count = count;
+      // this.money = thisMoney - money;
       this.$store.commit('setOpenCase', {
-        count: this.count,
-        money: this.money,
+        count: count,
+        money: thisMoney - money,
         moneyArr: this.moneyArr
       })
     }

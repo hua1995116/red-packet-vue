@@ -17,7 +17,7 @@
     </div>
     <div class="list-packet__waiting">红包金额0.10,等待对方领取</div>
     <div class="list-packet__list">
-      <div class="list-packet__li">
+      <div class="list-packet__li" v-for="(item,index) in moneyArr" :key={index}>
         <div class="list-packet__li-head">
           <img src="http://www.qiufengh.com/static/img/hua1995116.jpg" alt="">
         </div>
@@ -25,7 +25,7 @@
           <p>华益峰</p>
           <p>01-24 14:40</p>
         </div>
-        <div class="list-packet__li-money">0.01元</div>
+        <div class="list-packet__li-money">{{item}}元</div>
       </div>
     </div>
   </div>
@@ -33,9 +33,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  computed: mapState({
-    state: state => state.state
-  })
+  computed: mapState(['state','moneyArr'])
 }
 </script>
 <style lang="scss">
