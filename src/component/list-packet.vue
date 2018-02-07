@@ -2,7 +2,7 @@
   <div class="list-packet" v-show="state === 2">
     <div class="list-packet__content">
       <div class="setting-packet__title">
-        <span>取消</span>
+        <span @click="handleBack">取消</span>
         <h3>微信红包</h3>
         <span>红包记录</span>
       </div>
@@ -33,6 +33,11 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  methods: {
+    handleBack() {
+      this.$store.commit('setState', 1)
+    }
+  },
   computed: mapState(['state','moneyArr'])
 }
 </script>

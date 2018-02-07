@@ -38,10 +38,11 @@ export default {
       }, 1500)
       setTimeout(() => {
         this.$store.commit('setState', 2);
+        this.rotateAn = false;
+        this.openAn = false;
       }, 2000)
     },
     handleopen() {
-      debugger;
       let count = this.count;
       let thisMoney = this.money;
       if(count === 0) {
@@ -51,8 +52,7 @@ export default {
         count--;
         const createRed = Math.round((thisMoney) * 100) / 100;
         this.moneyArr.push(createRed);
-        // this.count = count;
-        // this.money = 0;
+
         this.$store.commit('setOpenCase', {
           count: count,
           money: 0,
@@ -66,11 +66,10 @@ export default {
       count--;
       const createRed = Math.round((money) * 100) / 100;
       this.moneyArr.push(createRed);
-      // this.count = count;
-      // this.money = thisMoney - money;
+
       this.$store.commit('setOpenCase', {
         count: count,
-        money: thisMoney - money,
+        money: thisMoney - createRed,
         moneyArr: this.moneyArr
       })
     }
